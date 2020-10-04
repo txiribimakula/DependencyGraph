@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClusterNode } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
 import { Solution } from './models/solution';
 
@@ -8,10 +9,12 @@ import { Solution } from './models/solution';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  layout = 'dagreCluster';
   layoutSettings = {
     orientation: 'TB'
   };
   curve = shape.curveBundle.beta(1);
+  clusters: ClusterNode[] = []
   nodes: any[] = [];
   links: any[] = [];
 
@@ -37,12 +40,21 @@ export class AppComponent implements OnInit {
     ]
   }
 
+
   ngOnInit(): void {
-    this.nodes.push({ id: this.solution.id, label: this.solution.name });
+    let solutionProjectsIds = [];
     this.solution.projects.forEach(project => {
+      solutionProjectsIds.push(project.id);
       this.nodes.push({ id: project.id, label: project.name });
-      this.links.push({ source: this.solution.id, target: project.id });
+      project.dependencies.forEach(dependency => {
+        this.links.push({ source: dependency, target: project.id });
+      });
+    });
+
+    this.clusters.push( {
+      id: this.solution.id,
+      label: this.solution.name ,
+      childNodeIds: solutionProjectsIds
     });
   }
-
 }
