@@ -13,35 +13,35 @@ export class AppComponent {
   curve: any = shape.curveLinear;
   nodes = [
     {
-      id: 'start',
-      label: 'scan'
+      id: 'solution',
+      label: 'SOLUTION'
     }, {
       id: '1',
-      label: 'Event#a'
+      label: 'Project#1'
     }, {
       id: '2',
-      label: 'Event#x'
+      label: 'Project#2'
     }, {
       id: '3',
-      label: 'Event#b'
+      label: 'Project#3'
     }, {
       id: '4',
-      label: 'Event#c'
+      label: 'Project#4'
     }, {
       id: '5',
-      label: 'Event#y'
+      label: 'Project#5'
     }, {
       id: '6',
-      label: 'Event#z'
+      label: 'Project#6'
     }
   ];
 
   links = [
     {
-      source: 'start',
+      source: 'solution',
       target: '1'
     }, {
-      source: 'start',
+      source: 'solution',
       target: '2'
     }, {
       source: '1',
