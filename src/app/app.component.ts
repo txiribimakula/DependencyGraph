@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
     ]
   }
 
-
   ngOnInit(): void {
     let solutionProjectsIds = [];
     this.solution.projects.forEach(project => {
