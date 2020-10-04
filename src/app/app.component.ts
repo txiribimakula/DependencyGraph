@@ -10,7 +10,7 @@ export class AppComponent {
   layoutSettings = {
     orientation: 'TB'
   };
-  curve: any = shape.curveLinear;
+  curve = shape.curveBundle.beta(1);
   nodes = [
     {
       id: 'solution',
