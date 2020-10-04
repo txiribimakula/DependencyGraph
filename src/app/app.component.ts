@@ -9,6 +9,9 @@ import { Solution } from './models/solution';
 })
 export class AppComponent implements OnInit {
 
+  nodes: any[] = [];
+  links: any[] = [];
+
   solution: Solution = {
     id: 'solution-id',
     name: 'SolutionName',
@@ -32,57 +35,38 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.nodes.push({ id: this.solution.id, label: this.solution.name });
+    this.solution.projects.forEach(project => {
+      this.nodes.push({ id: project.id, label: project.name });
+      this.links.push({ source: this.solution.id, target: project.id });
+    });
   }
 
   layoutSettings = {
     orientation: 'TB'
   };
   curve = shape.curveBundle.beta(1);
-  nodes = [
-    {
-      id: 'solution',
-      label: 'SOLUTION'
-    }, {
-      id: '1',
-      label: 'Project#1'
-    }, {
-      id: '2',
-      label: 'Project#2'
-    }, {
-      id: '3',
-      label: 'Project#3'
-    }, {
-      id: '4',
-      label: 'Project#4'
-    }, {
-      id: '5',
-      label: 'Project#5'
-    }, {
-      id: '6',
-      label: 'Project#6'
-    }
-  ];
+  
 
-  links = [
-    {
-      source: 'solution',
-      target: '1'
-    }, {
-      source: 'solution',
-      target: '2'
-    }, {
-      source: '1',
-      target: '3'
-    }, {
-      source: '2',
-      target: '4'
-    }, {
-      source: '2',
-      target: '6'
-    }, {
-      source: '6',
-      target: '5'
-    }
-  ];
+  // links = [
+  //   {
+  //     source: 'solution',
+  //     target: '1'
+  //   }, {
+  //     source: 'solution',
+  //     target: '2'
+  //   }, {
+  //     source: '1',
+  //     target: '3'
+  //   }, {
+  //     source: '2',
+  //     target: '4'
+  //   }, {
+  //     source: '2',
+  //     target: '6'
+  //   }, {
+  //     source: '6',
+  //     target: '5'
+  //   }
+  // ];
 }
