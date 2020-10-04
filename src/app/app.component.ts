@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ClusterNode } from '@swimlane/ngx-graph';
+import { ClusterNode, Node, Edge } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
 import { Solution } from './models/solution';
 
@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   };
   curve = shape.curveBundle.beta(1);
   clusters: ClusterNode[] = []
-  nodes: any[] = [];
-  links: any[] = [];
+  nodes: Node[] = [];
+  links: Edge[] = [];
 
   solution: Solution = {
     id: 'solution-id',
