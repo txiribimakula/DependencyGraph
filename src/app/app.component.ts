@@ -67,18 +67,11 @@ export class AppComponent implements OnInit {
       });
     });
 
+    solutionChildrenIds.push(this.subSolution.id); 
     let subSolutionChildrenIds = [];
     this.subSolution.projects.forEach(project => {
       subSolutionChildrenIds.push(project.id);
-      if(!this.nodes.some(node => node.id == project.id)) {
-        this.nodes.push({ id: project.id, label: project.name });
-        project.dependencies.forEach(dependency => {
-          this.links.push({ source: dependency, target: project.id });
-        });
-      }
     });
-
-    solutionChildrenIds.push(this.subSolution.id); 
 
     this.clusters.push(
       {
