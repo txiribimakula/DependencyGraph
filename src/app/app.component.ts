@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
   links: Edge[] = [];
 
   solution: Solution = {
-    id: 'solution-id',
-    name: 'SolutionName',
+    id: 'solution-id-1',
+    name: 'SolutionName1',
     projects: [
       {
         id: 'project-id-1',
@@ -40,20 +40,57 @@ export class AppComponent implements OnInit {
     ]
   }
 
+  subSolution: Solution = {
+    id: 'solution-id-2',
+    name: 'SolutionName2',
+    projects: [
+      {
+        id: 'project-id-1',
+        name: 'ProjectName1',
+        dependencies: []
+      },
+      {
+        id: 'project-id-2',
+        name: 'ProjectName2',
+        dependencies: []
+      }
+    ]
+  }
+
   ngOnInit(): void {
-    let solutionProjectsIds = [];
+    let solutionChildrenIds = [];
     this.solution.projects.forEach(project => {
-      solutionProjectsIds.push(project.id);
+      solutionChildrenIds.push(project.id);
       this.nodes.push({ id: project.id, label: project.name });
       project.dependencies.forEach(dependency => {
         this.links.push({ source: dependency, target: project.id });
       });
     });
 
-    this.clusters.push( {
-      id: this.solution.id,
-      label: this.solution.name ,
-      childNodeIds: solutionProjectsIds
+    let subSolutionChildrenIds = [];
+    this.subSolution.projects.forEach(project => {
+      subSolutionChildrenIds.push(project.id);
+      if(!this.nodes.some(node => node.id == project.id)) {
+        this.nodes.push({ id: project.id, label: project.name });
+        project.dependencies.forEach(dependency => {
+          this.links.push({ source: dependency, target: project.id });
+        });
+      }
     });
+
+    solutionChildrenIds.push(this.subSolution.id); 
+
+    this.clusters.push(
+      {
+        id: this.solution.id,
+        label: this.solution.name,
+        childNodeIds: solutionChildrenIds
+      },
+      {
+        id: this.subSolution.id,
+        label: this.subSolution.name,
+        childNodeIds: subSolutionChildrenIds
+      }
+    );
   }
 }
