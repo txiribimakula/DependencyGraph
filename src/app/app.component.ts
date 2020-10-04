@@ -7,6 +7,9 @@ import * as shape from 'd3-shape';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  layoutSettings = {
+    orientation: 'TB'
+  };
   curve: any = shape.curveLinear;
   nodes = [
     {
