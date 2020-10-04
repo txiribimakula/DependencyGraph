@@ -8,7 +8,10 @@ import { Solution } from './models/solution';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
+  layoutSettings = {
+    orientation: 'TB'
+  };
+  curve = shape.curveBundle.beta(1);
   nodes: any[] = [];
   links: any[] = [];
 
@@ -42,31 +45,4 @@ export class AppComponent implements OnInit {
     });
   }
 
-  layoutSettings = {
-    orientation: 'TB'
-  };
-  curve = shape.curveBundle.beta(1);
-  
-
-  // links = [
-  //   {
-  //     source: 'solution',
-  //     target: '1'
-  //   }, {
-  //     source: 'solution',
-  //     target: '2'
-  //   }, {
-  //     source: '1',
-  //     target: '3'
-  //   }, {
-  //     source: '2',
-  //     target: '4'
-  //   }, {
-  //     source: '2',
-  //     target: '6'
-  //   }, {
-  //     source: '6',
-  //     target: '5'
-  //   }
-  // ];
 }
