@@ -1,12 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as shape from 'd3-shape';
+import { Solution } from './models/solution';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  solution: Solution = {
+    id: 'solution-id',
+    name: 'SolutionName',
+    projects: [
+      {
+        id: 'project-id-1',
+        name: 'ProjectName1',
+        dependencies: []
+      },
+      {
+        id: 'project-id-2',
+        name: 'ProjectName2',
+        dependencies: []
+      },
+      {
+        id: 'project-id-3',
+        name: 'ProjectName3',
+        dependencies: ['project-id-1', 'project-id-2']
+      }
+    ]
+  }
+
+  ngOnInit(): void {
+    
+  }
+
   layoutSettings = {
     orientation: 'TB'
   };
