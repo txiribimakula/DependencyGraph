@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClusterNode, Node, Edge } from '@swimlane/ngx-graph';
 import * as shape from 'd3-shape';
+import { MainProjectsMock, PartialProjectsMock } from 'src/mock/projects';
 import { Solution } from './models/solution';
 
 @Component({
@@ -21,40 +22,13 @@ export class AppComponent implements OnInit {
   solution: Solution = {
     id: 'solution-id-1',
     name: 'SolutionName1',
-    projects: [
-      {
-        id: 'project-id-1',
-        name: 'ProjectName1',
-        dependencies: []
-      },
-      {
-        id: 'project-id-2',
-        name: 'ProjectName2',
-        dependencies: []
-      },
-      {
-        id: 'project-id-3',
-        name: 'ProjectName3',
-        dependencies: ['project-id-1', 'project-id-2']
-      }
-    ]
+    projects: MainProjectsMock
   }
 
   subSolution: Solution = {
     id: 'solution-id-2',
     name: 'SolutionName2',
-    projects: [
-      {
-        id: 'project-id-1',
-        name: 'ProjectName1',
-        dependencies: []
-      },
-      {
-        id: 'project-id-2',
-        name: 'ProjectName2',
-        dependencies: []
-      }
-    ]
+    projects: PartialProjectsMock
   }
 
   ngOnInit(): void {
